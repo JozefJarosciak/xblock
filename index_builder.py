@@ -39,7 +39,7 @@ for record in records:
 # Batch insert into 'blocks' table
 try:
     cursor.executemany("""
-        REPLACE INTO blocks (hash_to_verify, key, account, created_at)
+        INSERT OR IGNORE INTO blocks (hash_to_verify, key, account, created_at)
         VALUES (?, ?, ?, ?)
     """, all_values)
     conn.commit()
